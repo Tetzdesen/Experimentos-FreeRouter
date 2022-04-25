@@ -9,9 +9,9 @@
 </br>
  
 ## Configuration Topology
-- [R1]()
--[R2]()
--[R3]()
+- [R1](https://github.com/Tetzdesen/Experimentos-FreeRouter/tree/main/experiment-dhcp/topology/r1)
+- [R2](https://github.com/Tetzdesen/Experimentos-FreeRouter/tree/main/experiment-dhcp/topology/r2)
+- [R3](https://github.com/Tetzdesen/Experimentos-FreeRouter/tree/main/experiment-dhcp/topology/r3)
 
 
 ## Question 
