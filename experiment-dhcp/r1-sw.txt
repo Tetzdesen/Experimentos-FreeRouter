@@ -1,0 +1,44 @@
+hostname r1
+buggy
+!
+!
+vrf definition v1
+ exit
+!
+interface ethernet1
+ description r1@e1 -> r2@e1
+ vrf forwarding v1
+ ipv4 address 1.1.1.1 255.255.255.0
+ ipv6 address 1111::1 ffff:ffff:ffff:ffff::
+ no shutdown
+ no log-link-change
+ exit
+!
+interface ethernet2
+ description r1@e1 -> r3@e1
+ vrf forwarding v1
+ ipv4 address 1.1.1.2 255.255.255.0
+ ipv6 address 1112::1 ffff:ffff:ffff:ffff::
+ no shutdown
+ no log-link-change
+ exit
+!
+!                  
+server dhcp4 dhr2  
+ pool 1.1.1.11 1.1.1.99
+ gateway 1.1.1.1   
+ netmask 255.255.255.0
+ no dns-server     
+ domain-name  
+ vrf v1            
+ exit              
+!   
+!
+server telnet tel
+ security protocol telnet
+ no exec authorization
+ no login authentication
+ vrf v1
+ exit
+!
+end

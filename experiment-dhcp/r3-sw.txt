@@ -1,0 +1,29 @@
+hostname r3
+buggy
+!
+vrf definition v1
+ exit
+!
+!
+interface ethernet1
+ description r3@e1 - r1@e1
+ vrf for v1
+ ipv4 addr 3.3.3.4 255.255.255.128
+ ipv4 dhcp-client enable
+ ipv4 dhcp-client early
+ ipv6 addr 3333::4 ffff::
+ ipv6 dhcp-client enable
+ ipv6 dhcp-client prefix
+ exit
+!
+!
+!
+server telnet tel
+ security protocol telnet
+ no exec authorization
+ no login authentication
+ vrf v1
+ exit
+!
+!
+end

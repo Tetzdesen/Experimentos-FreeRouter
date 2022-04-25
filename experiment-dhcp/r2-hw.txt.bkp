@@ -1,0 +1,85 @@
+hostname r2
+buggy
+!
+!
+prefix-list p4
+ sequence 10 permit 0.0.0.0/0 ge 0 le 0
+ exit
+!
+prefix-list p6
+ sequence 10 permit ::/0 ge 0 le 0
+ exit
+!
+vrf definition v1
+ exit
+!
+interface ethernet
+ description r2@e1 -> r1@e1
+ vrf forwarding v1
+ ipv4 address 2.2.2.2 255.255.255.252
+ no shutdown
+ no log-link-change
+ exit
+!
+interface ethernet1
+ description freerouter@enp2s0
+ vrf forwarding v1
+ ipv4 address dynamic 255.255.255.0
+ ipv4 gateway-prefix p4
+ ipv4 dhcp-client enable
+ ipv4 dhcp-client early
+ ipv6 address dynamic ffff:ffff:ffff:ffff::
+ ipv6 gateway-prefix p6
+ ipv6 slaac
+ no shutdown
+ no log-link-change
+ exit
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+sensor inthw
+ path interfaces-sw/interface/counter
+ prefix freertr-ifaces
+ prepend iface_sw_byte_
+ command show interface swsumm
+ name 0 ifc=
+ key name interfaces-sw/interface
+ replace \. _
+ column 1 name st
+ column 1 replace admin -1
+ column 1 replace down 0
+ column 1 replace up 1
+ column 2 name tx
+ column 3 name rx
+ column 4 name dr
+ exit
+!
+server telnet tel
+ security protocol telnet
+ no exec authorization
+ no login authentication
+ vrf v1
+ exit
+!
+server prometheus router
+ protocol tcp
+ port 9001
+ all-metrics inthw
+ sensor inthw
+ interface ethernet1
+ vrf v1
+ exit
+!
+!
+end
