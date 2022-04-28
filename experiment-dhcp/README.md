@@ -68,5 +68,5 @@ end
 ```
 ## Question 
 
-### This a topology with three routers (R1, R2 and R3). R1 has two network interfaces connected to two other routers (R1@eth1 -> R2@eth1 and R1@eth2 -> R3@eth1), how do I enable the DHCP server (at the R1) to work with both network interfaces?
+#### This a topology with three routers (R1, R2 and R3). R1 has two network interfaces connected to two other routers (R1@eth1 -> R2@eth1 and R1@eth2 -> R3@eth1), how do I enable the DHCP server (at the R1) to work with both network interfaces?
 
