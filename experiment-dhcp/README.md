@@ -38,7 +38,7 @@ interface ethernet1
  exit
 !
 interface ethernet2
- description r1@e1 -> r3@e1
+ description r1@e2 -> r3@e1
  vrf forwarding v1
  ipv4 address 1.1.1.2 255.255.255.0
  ipv6 address 1112::1 ffff:ffff:ffff:ffff::
