@@ -12,9 +12,9 @@
 
 #### Hi,
 #### I decided to test a different DHCP Server topology on FreeRouter. 
-#### Topology (VirtualBox):
-- Virtual Machine (Debian 11) - FreeRouter
-- Two Virtual Machine (Ubuntu) - Ubuntu Client
+#### Topology (VMs)
+- RARE/freeRtr - Debian 11
+- 2 Clients - Ubuntu 21.04
 
 #### The network configuration, defined a NAT (WAN) to Internet and a Internal network (LAN).
 
